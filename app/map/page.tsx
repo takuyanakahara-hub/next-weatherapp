@@ -3,7 +3,7 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useState } from "react";
 
-const mapAPI = "AIzaSyBl0K1XwvTYiE32JcTJwtCM7G6SixPjQWk";
+const mapAPI = "";
 
 const containerStyle = {
   width: "400px",
