@@ -1,40 +1,53 @@
 'use client';
 
-import { Wrapper } from "@googlemaps/react-wrapper";
-import { useEffect, useRef, useState } from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { useState } from "react";
 
-const VIEW_STYLE = {
-  width: '100%',
-  aspectRatio: '16 / 9',
-}
+const mapAPI = "AIzaSyBl0K1XwvTYiE32JcTJwtCM7G6SixPjQWk";
 
-function Content({
-  center,
-  zoom,
-}: {
-  center: google.maps.LatLngLiteral;
-  zoom: number;
-}) {
-  const ref = useRef();
+const containerStyle = {
+  width: "400px",
+  height: "400px",
+};
 
-  useEffect(() => {
-    new window.google.maps.Map(ref.current, {
-      center,
-      zoom,
-    });
-  });
+const center = {
+  lat: 35.69575,
+  lng: 139.77521,
+};
 
-  return <div style={VIEW_STYLE} ref={ref} id="map" />;
+const positionAkiba = {
+  lat: 35.69397,
+  lng: 139.7762,
 }
 
 
-export default function Map() {
-  const center = { lat: -34.397, lng: 150.644 };
-  const zoom = 4;
 
+export default function MyComponents() {
+
+  const [place, setPlace] = useState({});
+
+  function clickFunk(e) {
+    const latState = e.latLng.lat();
+    const lngState = e.latLng.lng();
+
+    setPlace({
+      lat: latState,
+      lng: lngState
+    })
+  }
   return (
-      <Wrapper apiKey={ "AIzaSyBl0K1XwvTYiE32JcTJwtCM7G6SixPjQWk" }>
-        <Content center={center} zoom={zoom} />
-      </Wrapper>
+    <>
+      <LoadScript googleMapsApiKey={mapAPI}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={16}
+          onClick={clickFunk}
+        >
+          <Marker position={place} />
+          
+        </GoogleMap>
+      </LoadScript>
+    </>
   );
 }

@@ -23,10 +23,7 @@ export default function Home() {
         setCode({code:keySet[i], cityName: e.target.value})
       }
     }
-  }
-
-  console.log(cityname)
-  console.log(codeData);
+  } 
 
 
   return (
