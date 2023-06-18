@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function Home() {
 
   const [cityname, setCityName] = useState("");
-  const [codeData, setCode] = useState({code: "", cityName: ""}); 
+  const [codeData, setCode] = useState({code: "", cityName: ""});
 
 
   const HandleChange = async(e: any) => {
@@ -38,6 +38,9 @@ export default function Home() {
         天気取得
         </Link>
       </button>
+
+      <Link href = {"/map" }>mapsample</Link>
+
 
       {/* <button onClick={HandleClick}>テスト</button>
       {data.code} */}
