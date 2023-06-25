@@ -2,46 +2,33 @@
 'use client';
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 
 export default function Home() {
 
+  //const obj = new Object();
+
   const [cityname, setCityName] = useState("");
-  const [codeData, setCode] = useState({code: "", cityName: ""});
+  
 
-
-  const HandleChange = async(e: any) => {
+  const inputValue = (e:any) => {
     setCityName(e.target.value)
-    const response = await fetch(`https://www.jma.go.jp/bosai/common/const/area.json`)
-    const res = await response.json()
-    const keySet = Object.keys(res["offices"]);
-
-    for (var i = 0; i<keySet.length; i ++) {
-      if (res["offices"][keySet[i]].name == e.target.value) {
-        setCode({code:keySet[i], cityName: e.target.value})
-      }
-    }
-  } 
-
+  }
 
   return (
     <>
       <h1>Hello, Weather App</h1>
-      <input value = {cityname}  onChange={HandleChange}/>
-      <button>
-        <Link href={{ pathname: "weather", query: codeData}}>
-        天気取得
-        </Link>
-      </button>
+      <input type="text" id="areaname" value={cityname} onChange={inputValue} />
 
       <Link href = {"/map" }>mapsample</Link>
-
-
-      {/* <button onClick={HandleClick}>テスト</button>
-      {data.code} */}
-
+      
+      <Link  href={{ pathname: "weathers", query: {name: cityname} }}>
+        <button>
+        取得
+        </button>
+      </Link>
     </>
 
   )

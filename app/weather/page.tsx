@@ -45,7 +45,7 @@ const WeatherData = () => {
 function Loading() {
   return (
     <>
-      <h2>🌀 Loading....</h2>
+      <h2>🌀Loading....</h2>
     </>
   );
 }
